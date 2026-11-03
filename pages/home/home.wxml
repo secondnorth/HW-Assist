@@ -1,0 +1,27 @@
+<view class="page">
+
+  <view class="hello">
+    <view class="hello-title">交作业啦</view>
+    <view class="hint">选择科目，拍照即可生成 PDF</view>
+  </view>
+
+  <view class="card" bindtap="goProfile">
+    <view class="row" wx:if="{{profile.name}}">
+      <view>
+        <view>{{profile.name}}</view>
+        <view class="hint">学号 {{profile.studentId}}</view>
+      </view>
+      <text class="link">修改</text>
+    </view>
+    <view class="row" wx:else>
+      <text>首次使用，请先填写姓名和学号</text>
+      <text class="link">去填写 ›</text>
+    </view>
+  </view>
+
+  <view class="subject" wx:for="{{subjects}}" wx:key="name" data-name="{{item.name}}" bindtap="chooseSubject">
+    <view class="subject-name">{{item.name}}</view>
+    <view class="subject-next">下次：{{item.nextLabel}} ›</view>
+  </view>
+
+</view>

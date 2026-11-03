@@ -1,0 +1,74 @@
+<view class="page">
+
+  <!-- 个人信息 -->
+  <view class="card">
+    <view class="row">
+      <view>
+        <view>{{profile.name}}</view>
+        <view class="hint">学号 {{profile.studentId}}</view>
+      </view>
+      <text class="link" bindtap="goProfile">修改</text>
+    </view>
+  </view>
+
+  <!-- 本次编号：可直接输入，也可上下滑动选择 -->
+  <view class="card">
+    <view class="card-title">{{subjectName}}</view>
+    <view class="row">
+      <text class="label">本次编号</text>
+      <view class="num-wrap">
+        <input class="num-input" type="number" maxlength="2" value="{{numberText}}"
+               bindinput="onNumInput" bindblur="onNumBlur" bindconfirm="onNumBlur" />
+        <text class="hint">（1–{{maxNumber}}）</text>
+      </view>
+    </view>
+    <picker-view class="wheel" indicator-style="height: 80rpx;" value="{{wheelValue}}" bindchange="onWheelChange">
+      <picker-view-column>
+        <view class="wheel-item" wx:for="{{labels}}" wx:key="*this">{{item}}</view>
+      </picker-view-column>
+    </picker-view>
+    <view class="hint">上下滑动选择，或直接输入数字。生成成功后，下次自动变为下一个编号（到 {{maxNumber}} 为止）。</view>
+  </view>
+
+  <!-- 拍照 -->
+  <view class="card">
+    <view class="card-title">作业照片（{{images.length}}/{{maxPages}}）</view>
+    <view class="grid">
+      <view class="cell" wx:for="{{images}}" wx:key="path" data-index="{{index}}" bindtap="onTapImage">
+        <image class="thumb" src="{{item.path}}" mode="aspectFit" style="transform: rotate({{item.rotate}}deg);" />
+        <view class="page-no">{{index + 1}}</view>
+      </view>
+      <view class="cell add" wx:if="{{images.length < maxPages}}" bindtap="chooseImages">
+        <text class="plus">＋</text>
+        <text class="hint">拍照/相册</text>
+      </view>
+    </view>
+    <view class="hint tip">点击图片可：查看大图、旋转、重拍、调整顺序、删除。页码即 PDF 页序。</view>
+
+    <view class="row switch-row">
+      <view>
+        <view>扫描增强</view>
+        <view class="hint">自动裁掉桌面、摆正纸张、让文字更清晰</view>
+      </view>
+      <switch checked="{{enhance}}" color="#07c160" bindchange="onEnhanceChange" />
+    </view>
+  </view>
+
+  <!-- 生成 -->
+  <button class="btn-primary" disabled="{{loading}}" bindtap="generate">
+    {{loading ? loadingText : '生成 PDF'}}
+  </button>
+
+  <!-- 结果 -->
+  <view class="card result" wx:if="{{result}}">
+    <view class="card-title">已生成</view>
+    <view class="filename">{{result.filename}}</view>
+    <view class="warn" wx:for="{{result.warnings}}" wx:key="*this">⚠ {{item}}</view>
+    <view class="btn-row">
+      <button class="btn-plain" bindtap="openPdf">预览 / 保存</button>
+      <button class="btn-primary" bindtap="sharePdf">发送给老师</button>
+    </view>
+    <view class="link center" bindtap="reset">再做一份</view>
+  </view>
+
+</view>
