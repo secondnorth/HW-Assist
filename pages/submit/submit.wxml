@@ -11,44 +11,64 @@
     </view>
   </view>
 
-  <!-- 本次编号：可直接输入，也可上下滑动选择 -->
+  <!-- 第【】周 / Lecture 【】 / 第【】章 -->
   <view class="card">
     <view class="card-title">{{subjectName}}</view>
-    <view class="row">
-      <text class="label">本次编号</text>
-      <view class="num-wrap">
-        <input class="num-input" type="number" maxlength="2" value="{{numberText}}"
-               bindinput="onNumInput" bindblur="onNumBlur" bindconfirm="onNumBlur" />
-        <text class="hint">（1–{{maxNumber}}）</text>
-      </view>
+    <view class="num-row">
+      <text class="num-text">{{prefix}}</text>
+      <input class="num-input" type="number" maxlength="2" value="{{numberText}}"
+             bindinput="onNumInput" bindblur="onNumBlur" bindconfirm="onNumBlur" />
+      <text class="num-text">{{suffix}}</text>
     </view>
     <picker-view class="wheel" indicator-style="height: 80rpx;" value="{{wheelValue}}" bindchange="onWheelChange">
       <picker-view-column>
-        <view class="wheel-item" wx:for="{{labels}}" wx:key="*this">{{item}}</view>
+        <view class="wheel-item" wx:for="{{wheelRows}}" wx:key="n">
+          <text class="wheel-text">{{item.text}}</text>
+          <text class="wheel-date" wx:if="{{item.date}}">{{item.date}}</text>
+        </view>
       </picker-view-column>
     </picker-view>
-    <view class="hint">上下滑动选择，或直接输入数字。生成成功后，下次自动变为下一个编号（到 {{maxNumber}} 为止）。</view>
+    <!-- <view class="hint">上下滑动选择，或直接输入数字。生成成功后，下次自动加一。</view> -->
   </view>
 
-  <!-- 拍照 -->
+  <!-- 照片 -->
   <view class="card">
-    <view class="card-title">作业照片（{{images.length}}/{{maxPages}}）</view>
+    <view class="card-head">
+      <view class="card-title head-title">作业照片（{{imageCount}}/{{maxPages}}）</view>
+      <view class="select-all link underline" wx:if="{{selecting}}" bindtap="toggleAll">{{allChecked ? '取消全选' : '全选'}}</view>
+    </view>
+
+    <view class="tools" wx:if="{{!selecting}}">
+      <view class="tool" hover-class="tool-hover" bindtap="batchCamera">批量拍照</view>
+      <view class="tool {{imageCount ? '' : 'disabled'}}" hover-class="tool-hover" bindtap="enterSelect">批量编辑</view>
+    </view>
+    <view wx:else>
+      <view class="tools">
+        <view class="tool {{selectedCount ? '' : 'disabled'}}" hover-class="tool-hover" data-dir="-1" bindtap="batchRotate">向左旋转</view>
+        <view class="tool {{selectedCount ? '' : 'disabled'}}" hover-class="tool-hover" data-dir="1" bindtap="batchRotate">向右旋转</view>
+        <view class="tool danger {{selectedCount ? '' : 'disabled'}}" hover-class="tool-hover" bindtap="batchDelete">删除</view>
+        <view class="tool main" hover-class="tool-hover" bindtap="exitSelect">完成</view>
+      </view>
+      <view class="hint sel-count">已选 {{selectedCount}} 张</view>
+    </view>
+
     <view class="grid">
-      <view class="cell" wx:for="{{images}}" wx:key="path" data-index="{{index}}" bindtap="onTapImage">
+      <view class="cell" wx:for="{{cells}}" wx:key="id" data-id="{{item.id}}" data-index="{{index}}" bindtap="onTapCell">
         <image class="thumb" src="{{item.path}}" mode="aspectFit" style="transform: rotate({{item.rotate}}deg);" />
         <view class="page-no">{{index + 1}}</view>
+        <view class="check {{item.checked ? 'on' : ''}}" wx:if="{{selecting}}">{{item.checked ? '✓' : ''}}</view>
       </view>
-      <view class="cell add" wx:if="{{images.length < maxPages}}" bindtap="chooseImages">
+      <view class="cell add" wx:if="{{!selecting && imageCount < maxPages}}" bindtap="chooseImages">
         <text class="plus">＋</text>
         <text class="hint">拍照/相册</text>
       </view>
     </view>
-    <view class="hint tip">点击图片可：查看大图、旋转、重拍、调整顺序、删除。页码即 PDF 页序。</view>
+    <!-- <view class="hint tip" wx:if="{{!selecting}}">点击图片查看大图，在大图页可以编辑。页码就是 PDF 的页序。</view> -->
 
     <view class="row switch-row">
       <view>
         <view>扫描增强</view>
-        <view class="hint">自动裁掉桌面、摆正纸张、让文字更清晰</view>
+        <!-- <view class="hint">自动裁掉桌面、摆正纸张、让文字更清晰</view> -->
       </view>
       <switch checked="{{enhance}}" color="#07c160" bindchange="onEnhanceChange" />
     </view>

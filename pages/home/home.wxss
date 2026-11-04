@@ -9,17 +9,10 @@
 }
 
 .subject {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background: #fff;
   border-radius: 16rpx;
-  padding: 44rpx 32rpx;
+  padding: 32rpx;
   margin-bottom: 24rpx;
-}
-
-.subject:active {
-  background: #f0f0f0;
 }
 
 .subject-name {
@@ -27,7 +20,173 @@
   font-weight: 600;
 }
 
-.subject-next {
-  color: #07c160;
+.ddl {
+  margin-top: 12rpx;
+  color: #888;
   font-size: 26rpx;
+}
+
+.actions {
+  display: flex;
+  gap: 20rpx;
+  margin-top: 28rpx;
+}
+
+.act {
+  flex: 1;
+  text-align: center;
+  height: 76rpx;
+  line-height: 76rpx;
+  border-radius: 12rpx;
+  border: 1rpx solid #d9d9d9;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.act-main {
+  background: #07c160;
+  border-color: #07c160;
+  color: #fff;
+}
+
+.act-hover {
+  opacity: 0.7;
+}
+
+/* 公告弹窗 */
+.mask {
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.board {
+  width: 86%;
+  background: #fffdf5;
+  border-radius: 20rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 40rpx rgba(0, 0, 0, 0.25);
+}
+
+.board-head {
+  display: flex;
+  align-items: center;
+  background: #fff3c4;
+  padding: 24rpx 12rpx;
+}
+
+.arrow {
+  width: 88rpx;
+  height: 88rpx;
+  line-height: 80rpx;
+  text-align: center;
+  font-size: 64rpx;
+  color: #7a5b00;
+  flex-shrink: 0;
+}
+
+.arrow.off {
+  color: #d8c98f;
+}
+
+.board-title {
+  flex: 1;
+  text-align: center;
+}
+
+.board-sub {
+  font-size: 24rpx;
+  color: #9a7b10;
+}
+
+.board-main {
+  font-size: 34rpx;
+  font-weight: 600;
+  margin-top: 4rpx;
+  color: #4a3800;
+}
+
+.board-body {
+  max-height: 56vh;
+  padding: 24rpx 32rpx 8rpx;
+  box-sizing: border-box;
+}
+
+.board-ddl {
+  font-size: 26rpx;
+  color: #c0392b;
+  margin-bottom: 20rpx;
+}
+
+.sec {
+  margin-bottom: 24rpx;
+}
+
+.sec-title {
+  font-size: 26rpx;
+  color: #9a7b10;
+  margin-bottom: 12rpx;
+}
+
+.item {
+  padding: 16rpx 0;
+  border-bottom: 1rpx dashed #eadfb0;
+}
+
+.item-label {
+  font-size: 26rpx;
+  color: #777;
+}
+
+.item-text {
+  font-size: 30rpx;
+  margin-top: 4rpx;
+  line-height: 1.5;
+}
+
+.supp {
+  display: flex;
+  align-items: center;
+  padding: 18rpx 0;
+  border-bottom: 1rpx dashed #eadfb0;
+}
+
+.tag {
+  font-size: 22rpx;
+  color: #fff;
+  background: #576b95;
+  border-radius: 6rpx;
+  padding: 2rpx 10rpx;
+  margin-right: 14rpx;
+  flex-shrink: 0;
+}
+
+.supp-title {
+  flex: 1;
+  color: #576b95;
+  font-size: 28rpx;
+}
+
+.supp-go {
+  color: #bbb;
+  font-size: 36rpx;
+}
+
+.empty {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.board-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20rpx 32rpx 28rpx;
 }

@@ -1,0 +1,13 @@
+<view class="viewer">
+  <swiper class="stage" style="height: {{stageH}}px;" current="{{current}}" bindchange="onChange">
+    <swiper-item wx:for="{{items}}" wx:key="id">
+      <image class="pic" src="{{item.path}}" mode="aspectFit"
+             style="width: {{item.w}}px; height: {{item.h}}px; margin-left: -{{item.w / 2}}px; margin-top: -{{item.h / 2}}px; transform: rotate({{item.rotate}}deg);" />
+    </swiper-item>
+  </swiper>
+
+  <view class="bar" style="height: {{barH}}px; padding-bottom: {{safe}}px;">
+    <view class="count">{{current + 1}} / {{total}}</view>
+    <view class="edit-btn" hover-class="edit-hover" bindtap="goEdit">编辑</view>
+  </view>
+</view>

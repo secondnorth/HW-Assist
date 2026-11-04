@@ -2,6 +2,9 @@
   "pages": [
     "pages/home/home",
     "pages/submit/submit",
+    "pages/viewer/viewer",
+    "pages/editor/editor",
+    "pages/camera/camera",
     "pages/profile/profile"
   ],
   "window": {

@@ -2,35 +2,13 @@
   "description": "作业提交助手",
   "miniprogramRoot": "./",
   "compileType": "miniprogram",
-  "appid": "wx85f4efebaedfb976",
+  "appid": "touristappid",
   "projectname": "hw-assistant",
   "setting": {
     "es6": true,
     "enhance": true,
     "postcss": true,
     "minified": true,
-    "urlCheck": false,
-    "compileWorklet": false,
-    "uglifyFileName": false,
-    "uploadWithSourceMap": true,
-    "packNpmManually": false,
-    "packNpmRelationList": [],
-    "minifyWXSS": true,
-    "minifyWXML": true,
-    "localPlugins": false,
-    "disableUseStrict": false,
-    "useCompilerPlugins": false,
-    "condition": false,
-    "babelSetting": {
-      "ignore": [],
-      "disablePlugins": [],
-      "outputPath": ""
-    }
-  },
-  "simulatorPluginLibVersion": {},
-  "packOptions": {
-    "ignore": [],
-    "include": []
-  },
-  "editorSetting": {}
+    "urlCheck": false
+  }
 }

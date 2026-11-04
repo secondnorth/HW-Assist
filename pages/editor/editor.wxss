@@ -1,0 +1,87 @@
+page {
+  background: #000;
+  color: #fff;
+}
+
+.stage {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  background: #000;
+}
+
+.pic {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+}
+
+/* 工具栏：图标在上、文字在下，和微信编辑图片的排版类似 */
+.tools {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: #111;
+  border-top: 1rpx solid #222;
+}
+
+.tool {
+  flex: 1;
+  text-align: center;
+}
+
+.tool.off {
+  opacity: 0.3;
+}
+
+.tool.danger .ico,
+.tool.danger .lab {
+  color: #ff6b61;
+}
+
+.ico {
+  font-size: 40rpx;
+  line-height: 48rpx;
+  color: #fff;
+}
+
+.lab {
+  font-size: 22rpx;
+  color: #bbb;
+  margin-top: 4rpx;
+}
+
+.tool-hover {
+  opacity: 0.6;
+}
+
+.foot {
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 32rpx;
+  padding-right: 32rpx;
+  background: #111;
+}
+
+.cancel {
+  font-size: 30rpx;
+  color: #fff;
+  padding: 16rpx 8rpx;
+}
+
+.pos {
+  font-size: 26rpx;
+  color: #888;
+}
+
+.done {
+  height: 64rpx;
+  line-height: 64rpx;
+  padding: 0 44rpx;
+  border-radius: 10rpx;
+  background: #07c160;
+  color: #fff;
+  font-size: 30rpx;
+}

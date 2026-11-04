@@ -1,0 +1,41 @@
+<view class="editor">
+
+  <view class="stage" style="height: {{stageH}}px;">
+    <image class="pic" wx:if="{{item}}" src="{{item.path}}" mode="aspectFit"
+           style="width: {{item.w}}px; height: {{item.h}}px; margin-left: -{{item.w / 2}}px; margin-top: -{{item.h / 2}}px; transform: rotate({{item.rotate}}deg);" />
+  </view>
+
+  <view class="tools" style="height: {{toolsH}}px;">
+    <view class="tool" hover-class="tool-hover" data-dir="-1" bindtap="rotate">
+      <view class="ico">↺</view>
+      <view class="lab">向左旋转</view>
+    </view>
+    <view class="tool" hover-class="tool-hover" data-dir="1" bindtap="rotate">
+      <view class="ico">↻</view>
+      <view class="lab">向右旋转</view>
+    </view>
+    <view class="tool" hover-class="tool-hover" bindtap="retake">
+      <view class="ico">◎</view>
+      <view class="lab">重拍</view>
+    </view>
+    <view class="tool {{canPrev ? '' : 'off'}}" hover-class="tool-hover" data-dir="-1" bindtap="move">
+      <view class="ico">←</view>
+      <view class="lab">前移</view>
+    </view>
+    <view class="tool {{canNext ? '' : 'off'}}" hover-class="tool-hover" data-dir="1" bindtap="move">
+      <view class="ico">→</view>
+      <view class="lab">后移</view>
+    </view>
+    <view class="tool danger" hover-class="tool-hover" bindtap="remove">
+      <view class="ico">✕</view>
+      <view class="lab">删除</view>
+    </view>
+  </view>
+
+  <view class="foot" style="height: {{footH}}px; padding-bottom: {{safe}}px;">
+    <view class="cancel" hover-class="tool-hover" bindtap="cancel">取消</view>
+    <view class="pos">{{index + 1}} / {{total}}</view>
+    <view class="done" hover-class="tool-hover" bindtap="done">完成</view>
+  </view>
+
+</view>

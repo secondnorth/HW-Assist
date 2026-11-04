@@ -1,8 +1,8 @@
 <view class="page">
 
   <view class="hello">
-    <view class="hello-title">交作业啦</view>
-    <view class="hint">选择科目，拍照即可生成 PDF</view>
+    <view class="hello-title">霍英东班作业格式转换</view>
+    <!-- <view class="hint">选择科目，查看作业或拍照提交</view> -->
   </view>
 
   <view class="card" bindtap="goProfile">
@@ -19,9 +19,55 @@
     </view>
   </view>
 
-  <view class="subject" wx:for="{{subjects}}" wx:key="name" data-name="{{item.name}}" bindtap="chooseSubject">
+  <view class="subject" wx:for="{{subjects}}" wx:key="name">
     <view class="subject-name">{{item.name}}</view>
-    <view class="subject-next">下次：{{item.nextLabel}} ›</view>
+    <view class="ddl">{{item.ddl}}</view>
+    <view class="actions" wx:if="{{item.canSubmit}}">
+      <view class="act" hover-class="act-hover" data-name="{{item.name}}" bindtap="openDetail">作业详情</view>
+      <view class="act act-main" hover-class="act-hover" data-name="{{item.name}}" bindtap="goSubmit">扫描作业</view>
+    </view>
+  </view>
+
+  <!-- 作业公告弹窗 -->
+  <view class="mask" wx:if="{{popup.show}}" catchtouchmove="noop" bindtap="closePopup">
+    <view class="board" catchtap="noop">
+      <view class="board-head">
+        <view class="arrow {{popup.hasPrev ? '' : 'off'}}" bindtap="prevItem">‹</view>
+        <view class="board-title">
+          <view class="board-sub">{{popup.subject}} · 作业公告</view>
+          <view class="board-main">{{popup.title}}</view>
+        </view>
+        <view class="arrow {{popup.hasNext ? '' : 'off'}}" bindtap="nextItem">›</view>
+      </view>
+
+      <scroll-view class="board-body" scroll-y>
+        <view class="board-ddl" wx:if="{{popup.ddl}}">{{popup.ddl}}</view>
+
+        <view class="sec" wx:if="{{popup.items.length}}">
+          <view class="sec-title">作业内容</view>
+          <view class="item" wx:for="{{popup.items}}" wx:key="key">
+            <view class="item-label">{{item.label}}</view>
+            <view class="item-text">{{item.text}}</view>
+          </view>
+        </view>
+
+        <view class="sec" wx:if="{{popup.supplements.length}}">
+          <view class="sec-title">补充作业</view>
+          <view class="supp" wx:for="{{popup.supplements}}" wx:key="key" data-index="{{index}}" bindtap="openSupplement">
+            <text class="tag">{{item.tag}}</text>
+            <text class="supp-title">{{item.title}}</text>
+            <text class="supp-go">›</text>
+          </view>
+        </view>
+
+        <view class="empty hint" wx:if="{{!popup.items.length && !popup.supplements.length}}">暂无详细内容</view>
+      </scroll-view>
+
+      <view class="board-foot">
+        <!-- <text class="hint">{{popup.pos}}　左右箭头可翻看其他次作业</text> -->
+        <text class="link" bindtap="closePopup">关闭</text>
+      </view>
+    </view>
   </view>
 
 </view>

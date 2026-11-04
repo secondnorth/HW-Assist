@@ -1,0 +1,22 @@
+<view class="wrap">
+
+  <camera wx:if="{{!denied}}" class="cam" style="height: {{camH}}px;" device-position="back" flash="off" binderror="onError"></camera>
+  <view wx:else class="denied" style="height: {{camH}}px;">
+    <view class="denied-text">没有相机权限，无法拍照</view>
+    <button class="btn-plain denied-btn" bindtap="openSetting">去设置</button>
+  </view>
+
+  <scroll-view class="strip" style="height: {{stripH}}px;" scroll-x>
+    <view class="strip-empty" wx:if="{{!shots.length}}">拍好的照片会出现在这里</view>
+    <image class="shot" wx:for="{{shots}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
+  </scroll-view>
+
+  <view class="bar" style="height: {{barH}}px; padding-bottom: {{safe}}px;">
+    <view class="side" hover-class="hover" bindtap="cancel">取消</view>
+    <view class="shutter" hover-class="hover" bindtap="shoot">
+      <view class="shutter-in"></view>
+    </view>
+    <view class="side done" hover-class="hover" bindtap="finish">完成<text class="n" wx:if="{{shots.length}}">（{{shots.length}}）</text></view>
+  </view>
+
+</view>
