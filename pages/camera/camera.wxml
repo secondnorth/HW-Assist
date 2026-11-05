@@ -7,7 +7,7 @@
   </view>
 
   <scroll-view class="strip" style="height: {{stripH}}px;" scroll-x>
-    <!-- <view class="strip-empty" wx:if="{{!shots.length}}">拍好的照片会出现在这里</view> -->
+    <view class="strip-empty" wx:if="{{!shots.length}}">拍好的照片会出现在这里</view>
     <image class="shot" wx:for="{{shots}}" wx:key="*this" src="{{item}}" mode="aspectFill" />
   </scroll-view>
 

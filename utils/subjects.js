@@ -5,7 +5,7 @@ const MIN_NUMBER = 1;
 const MAX_NUMBER = 50;
 
 // 五个科目。
-//   canSubmit  是否开放“扫描作业”（程序设计只显示 ddl，所以是 false）
+//   canSubmit  是否开放“提交作业”（程序设计只显示 ddl，所以是 false）
 //   prefix / suffix  提交页里编号输入框两边的字，如 “第 [ ] 周”、“Lecture [ ]”
 //   showDates  滚轮里是否在后面标注这一周的具体日期（按周的科目才标）
 //   wheelText(n)  滚轮里每一行的文字

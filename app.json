@@ -8,7 +8,7 @@
     "pages/profile/profile"
   ],
   "window": {
-    "navigationBarTitleText": "霍英东班作业格式转换",
+    "navigationBarTitleText": "作业提交助手",
     "navigationBarBackgroundColor": "#ffffff",
     "navigationBarTextStyle": "black",
     "backgroundColor": "#f5f6f8"

@@ -76,48 +76,6 @@ page {
   color: #888;
 }
 
-/* 裁切 */
-.mask {
-  position: absolute;
-  background: rgba(0, 0, 0, 0.6);
-  pointer-events: none;
-}
-
-.frame {
-  position: absolute;
-  box-sizing: border-box;
-  border: 2rpx solid #fff;
-  pointer-events: none;
-}
-
-.corner {
-  position: absolute;
-  width: 36rpx;
-  height: 36rpx;
-  border: 0 solid #fff;
-}
-
-.corner.tl { left: -4rpx; top: -4rpx; border-left-width: 8rpx; border-top-width: 8rpx; }
-.corner.tr { right: -4rpx; top: -4rpx; border-right-width: 8rpx; border-top-width: 8rpx; }
-.corner.bl { left: -4rpx; bottom: -4rpx; border-left-width: 8rpx; border-bottom-width: 8rpx; }
-.corner.br { right: -4rpx; bottom: -4rpx; border-right-width: 8rpx; border-bottom-width: 8rpx; }
-
-.touch {
-  position: absolute;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-}
-
-.off-canvas {
-  position: fixed;
-  left: -9999px;
-  top: 0;
-  width: 10px;
-  height: 10px;
-}
-
 .done {
   height: 64rpx;
   line-height: 64rpx;

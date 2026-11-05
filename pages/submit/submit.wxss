@@ -202,73 +202,17 @@
   margin-bottom: 8rpx;
 }
 
-/* 转换结果：文件卡片 */
-.file {
+.btn-row {
   display: flex;
-  align-items: center;
-  padding: 8rpx 0;
+  gap: 20rpx;
+  margin-top: 16rpx;
 }
 
-.file-hover {
-  opacity: 0.6;
-}
-
-.file-logo {
-  width: 96rpx;
-  height: 120rpx;
-  flex-shrink: 0;
-  margin-right: 24rpx;
-}
-
-.file-name {
+.btn-row button {
   flex: 1;
-  word-break: break-all;
-  font-size: 28rpx;
-  color: #222;
 }
 
-.guide-link {
-  margin-top: 20rpx;
-  font-size: 22rpx;
-  color: #576b95;
-}
-
-/* 文件保存说明书弹窗 */
-.guide-mask {
-  position: fixed;
-  z-index: 100;
-  left: 0;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(0, 0, 0, 0.6);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.guide-box {
-  width: 600rpx;
-  background: #fff;
-  border-radius: 20rpx;
-  overflow: hidden;
-}
-
-.guide-swiper {
-  width: 600rpx;
-  height: 1000rpx;
-}
-
-.guide-img {
-  width: 100%;
-  height: 100%;
-}
-
-.guide-close {
-  height: 88rpx;
-  line-height: 88rpx;
+.center {
   text-align: center;
-  font-size: 30rpx;
-  color: #576b95;
-  border-top: 1rpx solid #eee;
+  margin-top: 24rpx;
 }

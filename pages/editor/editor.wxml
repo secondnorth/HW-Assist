@@ -1,79 +1,41 @@
 <view class="editor">
 
   <view class="stage" style="height: {{stageH}}px;">
-    <image class="pic" wx:if="{{item && !cropping}}" src="{{item.path}}" mode="aspectFit"
+    <image class="pic" wx:if="{{item}}" src="{{item.path}}" mode="aspectFit"
            style="width: {{item.w}}px; height: {{item.h}}px; margin-left: -{{item.w / 2}}px; margin-top: -{{item.h / 2}}px; transform: rotate({{item.rotate}}deg);" />
-
-    <block wx:if="{{cropping}}">
-      <image class="pic" src="{{item.path}}" mode="aspectFit"
-             style="left: {{cropPic.left}}px; top: {{cropPic.top}}px; width: {{cropPic.w}}px; height: {{cropPic.h}}px; margin-left: -{{cropPic.w / 2}}px; margin-top: -{{cropPic.h / 2}}px; transform: rotate({{item.rotate}}deg);" />
-
-      <!-- 框外变暗 -->
-      <view class="mask" style="left: 0; top: 0; width: 100%; height: {{crop.y}}px;"></view>
-      <view class="mask" style="left: 0; top: {{crop.y + crop.h}}px; width: 100%; bottom: 0;"></view>
-      <view class="mask" style="left: 0; top: {{crop.y}}px; width: {{crop.x}}px; height: {{crop.h}}px;"></view>
-      <view class="mask" style="left: {{crop.x + crop.w}}px; top: {{crop.y}}px; right: 0; height: {{crop.h}}px;"></view>
-
-      <!-- 裁切框和四个角 -->
-      <view class="frame" style="left: {{crop.x}}px; top: {{crop.y}}px; width: {{crop.w}}px; height: {{crop.h}}px;">
-        <view class="corner tl"></view>
-        <view class="corner tr"></view>
-        <view class="corner bl"></view>
-        <view class="corner br"></view>
-      </view>
-
-      <!-- 盖在最上面接手势 -->
-      <view class="touch" catchtouchstart="onCropStart" catchtouchmove="onCropMove" catchtouchend="onCropEnd" catchtouchcancel="onCropEnd"></view>
-    </block>
   </view>
 
   <view class="tools" style="height: {{toolsH}}px;">
-    <block wx:if="{{!cropping}}">
-      <view class="tool" hover-class="tool-hover" data-dir="-1" bindtap="rotate">
-        <view class="ico">↺</view>
-        <view class="lab">向左旋转</view>
-      </view>
-      <view class="tool" hover-class="tool-hover" data-dir="1" bindtap="rotate">
-        <view class="ico">↻</view>
-        <view class="lab">向右旋转</view>
-      </view>
-      <view class="tool" hover-class="tool-hover" bindtap="startCrop">
-        <view class="ico">⛶</view>
-        <view class="lab">裁切</view>
-      </view>
-      <view class="tool" hover-class="tool-hover" bindtap="retake">
-        <view class="ico">◎</view>
-        <view class="lab">重拍</view>
-      </view>
-      <view class="tool {{canPrev ? '' : 'off'}}" hover-class="tool-hover" data-dir="-1" bindtap="move">
-        <view class="ico">←</view>
-        <view class="lab">前移</view>
-      </view>
-      <view class="tool {{canNext ? '' : 'off'}}" hover-class="tool-hover" data-dir="1" bindtap="move">
-        <view class="ico">→</view>
-        <view class="lab">后移</view>
-      </view>
-      <view class="tool danger" hover-class="tool-hover" bindtap="remove">
-        <view class="ico">✕</view>
-        <view class="lab">删除</view>
-      </view>
-    </block>
+    <view class="tool" hover-class="tool-hover" data-dir="-1" bindtap="rotate">
+      <view class="ico">↺</view>
+      <view class="lab">向左旋转</view>
+    </view>
+    <view class="tool" hover-class="tool-hover" data-dir="1" bindtap="rotate">
+      <view class="ico">↻</view>
+      <view class="lab">向右旋转</view>
+    </view>
+    <view class="tool" hover-class="tool-hover" bindtap="retake">
+      <view class="ico">◎</view>
+      <view class="lab">重拍</view>
+    </view>
+    <view class="tool {{canPrev ? '' : 'off'}}" hover-class="tool-hover" data-dir="-1" bindtap="move">
+      <view class="ico">←</view>
+      <view class="lab">前移</view>
+    </view>
+    <view class="tool {{canNext ? '' : 'off'}}" hover-class="tool-hover" data-dir="1" bindtap="move">
+      <view class="ico">→</view>
+      <view class="lab">后移</view>
+    </view>
+    <view class="tool danger" hover-class="tool-hover" bindtap="remove">
+      <view class="ico">✕</view>
+      <view class="lab">删除</view>
+    </view>
   </view>
 
   <view class="foot" style="height: {{footH}}px; padding-bottom: {{safe}}px;">
-    <block wx:if="{{!cropping}}">
-      <view class="cancel" hover-class="tool-hover" bindtap="cancel">取消</view>
-      <view class="pos">{{index + 1}} / {{total}}</view>
-      <view class="done" hover-class="tool-hover" bindtap="done">完成</view>
-    </block>
-    <block wx:else>
-      <view class="cancel" hover-class="tool-hover" bindtap="cancelCrop">取消</view>
-      <view class="cancel" hover-class="tool-hover" bindtap="resetCrop">还原</view>
-      <view class="done" hover-class="tool-hover" bindtap="applyCrop">确定</view>
-    </block>
+    <view class="cancel" hover-class="tool-hover" bindtap="cancel">取消</view>
+    <view class="pos">{{index + 1}} / {{total}}</view>
+    <view class="done" hover-class="tool-hover" bindtap="done">完成</view>
   </view>
-
-  <!-- 导出裁切结果用的画布，放在屏幕外 -->
-  <canvas type="2d" id="cropCanvas" class="off-canvas"></canvas>
 
 </view>

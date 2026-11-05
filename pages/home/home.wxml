@@ -64,7 +64,7 @@
       </scroll-view>
 
       <view class="board-foot">
-        <text class="hint">{{popup.pos}}</text>
+        <!-- <text class="hint">{{popup.pos}}　左右箭头可翻看其他次作业</text> -->
         <text class="link" bindtap="closePopup">关闭</text>
       </view>
     </view>
