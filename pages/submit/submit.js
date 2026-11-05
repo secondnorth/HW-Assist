@@ -1,4 +1,5 @@
 const api = require('../../utils/api');
+const { GUIDE_IMAGES } = require('../../utils/data');
 const { MAX_PAGES, makeImage, rotated } = require('../../utils/images');
 const {
   findSubject,
@@ -40,7 +41,8 @@ Page({
     enhance: true,
     loading: false,
     loadingText: '',
-    result: null // { filename, filePath, warnings }
+    result: null, // { filename, filePath, warnings }
+    guide: { show: false, images: GUIDE_IMAGES } // 文件保存说明书弹窗
   },
 
   onLoad(options) {
@@ -52,7 +54,7 @@ Page({
     this.subject = subject;
     this.checked = {}; // 批量编辑时被勾选的图片 id
     setImages([]);
-    wx.setNavigationBarTitle({ title: subject.name + ' · 提交作业' });
+    wx.setNavigationBarTitle({ title: subject.name + ' · 扫描作业' });
     this.setData(
       Object.assign(
         {
@@ -280,6 +282,7 @@ Page({
       this.setData({
         result: { filename: res.filename, filePath, warnings: res.warnings || [] }
       });
+      wx.showToast({ title: '已完成pdf转换！', icon: 'none' });
     } catch (err) {
       wx.showModal({
         title: '出错了',
@@ -300,22 +303,13 @@ Page({
     });
   },
 
-  sharePdf() {
-    const { filePath, filename } = this.data.result;
-    wx.shareFileMessage({
-      filePath,
-      fileName: filename, // 发出去的文件名就是后端自动命名的结果
-      fail: (e) => {
-        wx.showToast({ title: '未发送：' + (e.errMsg || ''), icon: 'none' });
-      }
-    });
+  openGuide() {
+    this.setData({ 'guide.show': true });
   },
 
-  // 再做一份：清空照片，编号取最新的“下次编号”
-  reset() {
-    setImages([]);
-    this.checked = {};
-    this.setData(Object.assign({ selecting: false }, this.numberFields(getNext(this.subject.name))));
-    this.refreshImages();
-  }
+  closeGuide() {
+    this.setData({ 'guide.show': false });
+  },
+
+  noop() {}
 });

@@ -81,14 +81,24 @@
 
   <!-- 结果 -->
   <view class="card result" wx:if="{{result}}">
-    <view class="card-title">已生成</view>
-    <view class="filename">{{result.filename}}</view>
-    <view class="warn" wx:for="{{result.warnings}}" wx:key="*this">⚠ {{item}}</view>
-    <view class="btn-row">
-      <button class="btn-plain" bindtap="openPdf">预览 / 保存</button>
-      <button class="btn-primary" bindtap="sharePdf">发送给老师</button>
+    <view class="file" hover-class="file-hover" bindtap="openPdf">
+      <image class="file-logo" src="/images/pdf.png" mode="aspectFit" />
+      <view class="file-name">{{result.filename}}</view>
     </view>
-    <view class="link center" bindtap="reset">再做一份</view>
+    <view class="warn" wx:for="{{result.warnings}}" wx:key="*this">⚠ {{item}}</view>
+    <view class="guide-link" bindtap="openGuide">文件保存说明书</view>
+  </view>
+
+  <!-- 文件保存说明书弹窗 -->
+  <view class="guide-mask" wx:if="{{guide.show}}" catchtouchmove="noop" bindtap="closeGuide">
+    <view class="guide-box" catchtap="noop">
+      <swiper class="guide-swiper" indicator-dots="{{guide.images.length > 1}}" indicator-active-color="#07c160">
+        <swiper-item wx:for="{{guide.images}}" wx:key="*this">
+          <image class="guide-img" src="{{item}}" mode="aspectFit" />
+        </swiper-item>
+      </swiper>
+      <view class="guide-close" hover-class="tool-hover" bindtap="closeGuide">关闭</view>
+    </view>
   </view>
 
 </view>
