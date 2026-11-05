@@ -1,5 +1,5 @@
 {
-  "description": "作业提交助手",
+  "description": "霍英东班作业格式转换",
   "miniprogramRoot": "./",
   "compileType": "miniprogram",
   "appid": "touristappid",
